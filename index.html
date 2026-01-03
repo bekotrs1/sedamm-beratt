@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Sedamm & Beratt</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #ffdde1, #ee9ca7);
+    text-align: center;
+    color: #333;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+.hidden { display: none; }
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #e75480;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover { background: #d64570; }
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+}
+.letter {
+    background: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.countdown {
+    font-size: 22px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="login">
+    <h1>🔐 Giriş</h1>
+    <p>Bu site sadece bize özel 💖</p>
+    <input type="password" id="password" placeholder="Şifreyi gir">
+    <br><br>
+    <button onclick="checkPassword()">Giriş Yap</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<div class="container hidden" id="content">
+    <h1>💖 Sedamm & Beratt 💖</h1>
+
+    <div class="countdown" id="countdown"></div>
+
+    <div class="letter">
+        <h2>🌹 Sana Küçük Bir Mektup 🌹</h2>
+        <p>
+            14 Ekim bizim için sıradan bir gün değildi.  
+            O gün sana çıkma teklif ederken elimde bir gül vardı.  
+            Belki çok büyük şeyler söylemedim ama kalbim o gün sana ait oldu.
+        </p>
+        <p>
+            Bu site; o günün, o gülün ve senin bende bıraktığın
+            o güzel hissin küçük bir hatırası.  
+            İyi ki varsın, iyi ki biz olduk 💕
+        </p>
+    </div>
+
+    <h2>📸 Anılarımız</h2>
+    <div class="gallery">
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+        <img src="foto4.jpg">
+    </div>
+</div>
+
+<script>
+const correctPassword = "14/10/25";
+
+function checkPassword() {
+    const input = document.getElementById("password").value;
+    if (input === correctPassword) {
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("content").classList.remove("hidden");
+    } else {
+        document.getElementById("error").innerText = "Şifre yanlış 💔";
+    }
+}
+
+// Countdown
+const targetDate = new Date("October 14, 2025 00:00:00").getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("countdown").innerText =
+            "14 Ekim 2025’e kalan süre: " + days + " gün 💞";
+    } else {
+        document.getElementById("countdown").innerText =
+            "Bugün bizim günümüz 💖";
+    }
+}, 1000);
+</script>
+
+</body>
+</html>
