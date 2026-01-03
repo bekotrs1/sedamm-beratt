@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Aşkımmm 💖</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(120deg, #ffe6f0, #ffb3c6);
+    text-align: center;
+    color: #333;
+    padding: 50px 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+.container { max-width: 700px; margin: auto; }
+.hidden { display: none; }
+
+input { padding:12px; font-size:16px; margin-top:10px; border-radius:8px; border:1px solid #e75480; }
+button { padding:12px 25px; font-size:16px; background:#e75480; color:white; border:none; border-radius:8px; cursor:pointer; margin-top:10px; }
+button:hover { background:#d64570; }
+
+.messages { margin-top:30px; font-size:20px; line-height:1.8; height:400px; overflow-y:hidden; position:relative; }
+.messages span { display:block; margin-bottom:15px; background: rgba(255,255,255,0.85); padding:15px; border-radius:10px; font-weight:bold; color:#e75480; opacity:0; position:relative; }
+
+.heart { position:absolute; font-size:24px; color:#e75480; user-select:none; pointer-events:none; animation:floatUp 4s linear infinite; }
+@keyframes floatUp { 0% { transform:translateY(100vh) scale(1); opacity:0.8; } 50% { opacity:1; } 100% { transform:translateY(-10vh) scale(1.3); opacity:0; } }
+
+</style>
+</head>
+<body>
+
+<!-- Arka plan müziği -->
+<audio id="bgMusic" src="https://cdn.jsdelivr.net/gh/bekotrs1/sedamm-beratt/BizimHikaye.mp3" autoplay loop></audio>
+
+<div class="container" id="login">
+    <h1>🔐 Özel Mesajım</h1>
+    <p>Bu site sadece sana özel 💖</p>
+    <input type="password" id="password" placeholder="Şifreyi gir">
+    <br>
+    <button onclick="checkPassword()">Giriş Yap</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<div class="container hidden" id="content">
+    <h1>💖 Aşkımmm 💖</h1>
+
+    <div class="messages" id="messages">
+        <span>Canımmm, bitanem, hep yanındayım 💕</span>
+        <span>Seninle her an, her saniye mutluyum 😍</span>
+        <span>Kokulu battaniye ördüğünü hatırlıyorum, her dokunuşun beni ısıtıyor 🌸</span>
+        <span>Sen benim en değerli hazinemsin, canım 💖</span>
+        <span>Seninle olmak en büyük mutluluğum 💞</span>
+        <span>Gülüşün dünyamı aydınlatıyor 🌟</span>
+        <span>Yanında olmak bana huzur veriyor, seni çok seviyorum 😘</span>
+        <span>Kalbim sadece sana ait, aşkımmm 💗</span>
+        <span>Seninle her şey daha renkli, daha anlamlı 🌈</span>
+        <span>Hayatımın en güzel anları seninle 💕</span>
+        <span>Seninle olunca zaman duruyor, bitanem ⏳💞</span>
+        <span>Özlemin bana enerji veriyor, her an seni düşünüyorum 💌</span>
+        <span>Sana her baktığımda kalbim hızla çarpıyor ❤️</span>
+        <span>Sen benim en güzel hikâyemsin, aşkım 🌹</span>
+        <span>Sana olan sevgim sonsuz, hiç bitmeyecek 💘</span>
+        <span>İyi ki sen varsın, iyi ki benimlesin 💕</span>
+        <span>Beni her zaman tamamlayan, hayatımı güzelleştiren sensin 💞</span>
+        <span>Seninle geçirdiğim her saniye bir mucize 💖</span>
+        <span>Seninle hayat daha tatlı, daha renkli ve daha güzel 💌</span>
+    </div>
+</div>
+
+<script>
+const correctPassword = "14/10/25";
+
+function checkPassword() {
+    const input = document.getElementById("password").value;
+    if(input === correctPassword){
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("content").classList.remove("hidden");
+        animateMessages();
+        startHearts();
+        document.getElementById('bgMusic').play();
+    } else {
+        document.getElementById("error").innerText = "Şifre yanlış 💔";
+    }
+}
+
+// Mesajları kaydırma efekti
+function animateMessages(){
+    const container = document.getElementById('messages');
+    const spans = container.querySelectorAll('span');
+    let index = 0;
+    setInterval(()=>{
+        if(index < spans.length){
+            spans[index].style.opacity='1';
+            spans[index].style.top='0';
+            container.scrollTop = container.scrollHeight;
+            index++;
+        }
+    }, 1200);
+}
+
+// Uçan kalpler
+function startHearts(){
+    setInterval(()=>{
+        const heart = document.createElement('div');
+        heart.className='heart';
+        heart.innerText='❤️';
+        heart.style.left = Math.random()*90 + 'vw';
+        heart.style.fontSize = (15+Math.random()*25)+'px';
+        document.body.appendChild(heart);
+        setTimeout(()=> heart.remove(),4000);
+    }, 500);
+}
+</script>
+
+</body>
+</html>
